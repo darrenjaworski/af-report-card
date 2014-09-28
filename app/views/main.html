@@ -1,4 +1,5 @@
 <div class="row">
+    <h3>Year</h3>
     <div class="btn-group">
       <button type="button" class="btn btn-default active">2013</button>
       <button type="button" class="btn btn-default">2014 coming soon</button>
@@ -6,19 +7,19 @@
 </div>
 <div class="row">
     <h3>Show</h3>
-    <div class="btn-group">
-        <button type="button" class="btn btn-default">25</button>
-        <button type="button" class="btn btn-default">50</button>
-        <button type="button" class="btn btn-default">100</button>
-        <button type="button" class="btn btn-default active">All</button>
+    <div class="btn-group limit-amount">
+        <button type="button" class="btn btn-default active" ng-click="limitAmount(0)">None</button>
+        <button type="button" class="btn btn-default" ng-click="limitAmount(50)">50</button>
+        <button type="button" class="btn btn-default" ng-click="limitAmount(100)">100</button>
+        <button type="button" class="btn btn-default" ng-click="limitAmount(200)">200</button>
+        <button type="button" class="btn btn-default" ng-click="limitAmount(1800)">All</button>
     </div>
 </div>
 <div class="row">
-    <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search" ng-model="query">
-        </div>
-    </form>
+    <h3>Start typing...</h3>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search" ng-model="query">
+    </div>
 </div>
 <div class="table-responsive row" ng-controller="MainCtrl">
     <table class="table">
@@ -29,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="school in schools | orderBy:orderProp | filter:query">
+            <tr ng-repeat="school in schools | orderBy:orderProp | filter:query | limitTo:limit ">
                 <td><a href="#/school/{{school.School}}">{{school.School}}</a></td>
                 <td>{{school.Grade}}</td>
             </tr>
@@ -39,7 +40,7 @@
         <li ng-class="{disabled: currentPage == 0}">
             <a href ng-click="prevPage()">&laquo;</a>
         </li>
-        <li ng-repeat="n in range(pagedItems.length)" ng-class="{active: n == currentPage}" ng-click="setPage()">
+        <li ng-repeat="n in range(pagedItems.length)" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
             <a href ng-bind="n + 1">1</a>
         </li>
         <li ng-class="{disabled: currentPage == pagedItems.length - 1}">

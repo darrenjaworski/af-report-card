@@ -21,15 +21,23 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        activetab: 'schools'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/map', {
+        templateUrl: 'views/map.html',
+        controller: 'MapCtrl',
+        activetab: 'map'
       })
-      .when('/school/:SiteCode', {
+      .when('/school/:School', {
           templateUrl: 'views/school.html',
-          controller: 'SchoolCtrl'
+          controller: 'SchoolCtrl',
+          activetab: 'schools'
+      })
+      .when('/equation', {
+          templateUrl: 'views/equation.html',
+          controller: 'EqCtrl',
+          activetab: 'equation'
       })
       .otherwise({
         redirectTo: '/'

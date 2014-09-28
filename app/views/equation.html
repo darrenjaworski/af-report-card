@@ -1,0 +1,107 @@
+<h1>Inside the Grade</h1>
+<h2>Example: Tulsa District</h2>
+<div ng-controller="EqCtrl">
+    <div class="panel panel-default row">
+        <div class="panel-heading">
+        <h3>Student Achievement <span class="badge">33% (of overall grade)</span></h3>
+        </div>
+        <div class="responsive-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th># of Students</th>
+                        <th>Performance Index</th>
+                        <th>Letter Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="sa in studentAchievement">
+                        <td>{{sa.subject}}</td>
+                        <td>{{sa.numberStudents}}</td>
+                        <td>{{sa.pi}}</td>
+                        <td>{{sa.grade}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default row">
+        <div class="panel-heading">
+        <h3>Overall Student Growth <span class="badge">17%</span></h3>
+        </div>
+        <div class="responsive-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th># of Students</th>
+                        <th>Performance Index</th>
+                        <th>Letter Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="sg in studentGrowth">
+                        <td>{{sg.subject}}</td>
+                        <td>{{sg.numberStudents}}</td>
+                        <td>{{sg.pi}}</td>
+                        <td>{{sg.grade}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default row">
+        <div class="panel-heading">
+        <h3>Bottom Quartile Student Growth <span class="badge">17%</span></h3>
+        </div>
+        <div class="responsive-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th># of Students</th>
+                        <th>Performance Index</th>
+                        <th>Letter Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="bsg in bottomStudentGrowth">
+                        <td>{{bsg.subject}}</td>
+                        <td>{{bsg.numberStudents}}</td>
+                        <td>{{bsg.pi}}</td>
+                        <td>{{bsg.grade}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default row">
+        <div class="panel-heading">
+        <h3>Whole School Performance <span class="badge">33%</span></h3>
+        </div>
+        <div class="responsive-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th></th>
+                        <th>Performance Index</th>
+                        <th>Letter Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="ws in wholeSchool">
+                        <td>{{ws.subject}}</td>
+                        <td></td>
+                        <td>{{ws.pi}}</td>
+                        <td>{{ws.grade}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <h1>Final Grade: D (1.16)</h1>
+</div>
