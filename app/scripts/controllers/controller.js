@@ -10,47 +10,45 @@
 
  //main page section
 angular.module('afReportCardApp')
-    .controller('MainCtrl', ['$scope', '$http',
-        function ($scope, $http) {
+    .controller('MainCtrl', ['$scope', '$http', 'Schools',
+        function ($scope, $http, Schools) {
+            console.log(Schools);
             $http.get('/data/2013.json').success( function(data){
                 $scope.schools = data;
             });
+
             $scope.orderProp = 'School';
-
-            //var amount = $('.limit-amount .btn.active').html();
-            //var amount = 1800;
-            //$scope.limit = amount;
-            $scope.limitAmount = function(amount) {
-                $scope.limit = amount;
-                $('.limit-amount .btn').click(function(){
-                    $('.limit-amount .btn').removeClass('active');
-                    $(this).addClass('active');
-                });
-            };
-            //pagination
-            $scope.currentPage = 0;
-            $scope.prevPage = function() {
-
-            };
-            $scope.nextPage = function() {
-
-            };
-            $scope.pageCount = function() {
-
-            };
      }]);
+
+angular.module('afReportCardApp')
+    .factory('Schools', function() {
+
+        return "blah";
+
+    });
 
 //individual school page
 angular.module('afReportCardApp')
-    .controller('SchoolCtrl', ['$scope', '$routeParams',
-      function($scope, $routeParams) {
-        $scope.School = $routeParams.School;
+    .controller('SchoolCtrl', ['$scope', '$routeParams', '$http',
+      function($scope, $routeParams, $http) {
+        $scope.school = $routeParams.School;
+
+        $http.get('/data/2013.json').success( function(data){
+            data.forEach(function(el){
+                if (el.School === $scope.school) {
+                    $scope.school = el;
+                } else {
+                    return '';
+                }
+            });
+        });
+
       }]);
 
 //map page
 angular.module('afReportCardApp')
     .controller('MapCtrl', function ($scope) {
-        $scope.awesomeThings = [];
+
     });
 
 //equation page

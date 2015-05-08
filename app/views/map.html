@@ -1,4 +1,49 @@
-<div class="jumbotron" ng-controller="MapCtrl">
-    <h1>I'm going to map some data</h1>
-    <p>Coming soon.</p>
-</div>
+<p>This visualization will allow users to compare statistics by school district, but also overlay other demographic data pertaining those districts.</p>
+<div class="map"></div>
+
+<script>
+    ( function map() {
+        var width = $(".map").width(), height = width/2;
+
+        var projection = d3.geo.transverseMercator()
+            .rotate([98 + 00 / 60, -35 + 00 / 60]) //http://www.ngs.noaa.gov/PUBS_LIB/ManualNOSNGS5.pdf
+            .scale(1)
+            .translate([0,0]);
+
+        var path = d3.geo.path()
+            .projection(projection);
+
+        var svg = d3.select(".map")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        d3.json("/data/schooldistricts.json", function(error, topo) {
+
+            var schooldistrict = topojson.feature(topo, topo.objects.sdtax);
+
+            var b = path.bounds(schooldistrict),
+                s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+                t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+
+            projection
+                .scale(s)
+                .translate(t);
+
+            svg.append("g")
+                .attr("class", "schooldistrict")
+                .selectAll("path")
+                .data(schooldistrict.features)
+                .enter()
+                .append("path")
+                .attr("class", "schooldistrict")
+                .attr("d", path)
+                .append("title")
+                .text(function(d)
+                {
+                    return d.properties.name;
+                });
+        });
+
+    }) ()
+</script>

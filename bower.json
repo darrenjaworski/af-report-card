@@ -12,7 +12,9 @@
     "angular-animate": "~1.2.0",
     "angular-touch": "~1.2.0",
     "angular-route": "~1.2.0",
-    "ui-router": "~0.2.11"
+    "ui-router": "~0.2.11",
+    "d3": "~3.4.13",
+    "topojson": "~1.6.18"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",

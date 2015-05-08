@@ -1,50 +1,46 @@
 <div class="row">
-    <h3>Year</h3>
-    <div class="btn-group">
-      <button type="button" class="btn btn-default active">2013</button>
-      <button type="button" class="btn btn-default">2014 coming soon</button>
+    <div class="col-md-5">
+        <h3>Year</h3>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default active">2013</button>
+          <!-- <button type="button" class="btn btn-default">2014 coming soon</button> -->
+        </div>
+        <!-- <h3>Show</h3>
+        <div class="btn-group limit-amount">
+            <button type="button" class="btn btn-default" ng-click="limitAmount(0)">None</button>
+            <button type="button" class="btn btn-default" ng-click="limitAmount(50)">50</button>
+            <button type="button" class="btn btn-default" ng-click="limitAmount(100)">100</button>
+            <button type="button" class="btn btn-default" ng-click="limitAmount(200)">200</button>
+            <button type="button" class="btn btn-default" ng-click="limitAmount(1800)">All</button>
+        </div> -->
+        <h3>Start typing...</h3>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" ng-model="query">
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="district-choice"></div>
     </div>
 </div>
 <div class="row">
-    <h3>Show</h3>
-    <div class="btn-group limit-amount">
-        <button type="button" class="btn btn-default active" ng-click="limitAmount(0)">None</button>
-        <button type="button" class="btn btn-default" ng-click="limitAmount(50)">50</button>
-        <button type="button" class="btn btn-default" ng-click="limitAmount(100)">100</button>
-        <button type="button" class="btn btn-default" ng-click="limitAmount(200)">200</button>
-        <button type="button" class="btn btn-default" ng-click="limitAmount(1800)">All</button>
+    <div class="col-md-12" ng-controller="MainCtrl">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>School</th>
+                    <th>County</th>
+                    <th>District</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="school in schools | orderBy:orderProp | filter:query ">
+                    <td><a href="#/school/{{school.School}}">{{school.School}}</a></td>
+                    <td>{{school.County}}</td>
+                    <td>{{school.District}}</td>
+                    <td>{{school.Grade}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
-<div class="row">
-    <h3>Start typing...</h3>
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search" ng-model="query">
-    </div>
-</div>
-<div class="table-responsive row" ng-controller="MainCtrl">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>School</th>
-                <th>Grade</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="school in schools | orderBy:orderProp | filter:query | limitTo:limit ">
-                <td><a href="#/school/{{school.School}}">{{school.School}}</a></td>
-                <td>{{school.Grade}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <ul class="pagination">
-        <li ng-class="{disabled: currentPage == 0}">
-            <a href ng-click="prevPage()">&laquo;</a>
-        </li>
-        <li ng-repeat="n in range(pagedItems.length)" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
-            <a href ng-bind="n + 1">1</a>
-        </li>
-        <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
-            <a href ng-click="nextPage()">&raquo;</a>
-        </li>
-    </ul>
 </div>

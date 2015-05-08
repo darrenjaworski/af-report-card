@@ -68,6 +68,8 @@ body {
   }
 }
 
+
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
@@ -89,4 +91,13 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+.schooldistrict {
+    fill: #eee;
+    stroke: #777;
+}
+
+.schooldistrict:hover {
+    fill: steelblue;
 }
